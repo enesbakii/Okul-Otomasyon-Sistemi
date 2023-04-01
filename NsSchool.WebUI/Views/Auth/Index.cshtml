@@ -1,0 +1,59 @@
+﻿@model LoginViewModel
+
+<section class="vh-100 bg-dark bg-gradient">
+	<div class="container py-5 h-100">
+		<div class="row d-flex align-items-center justify-content-center h-100">
+			<div class="col-md-8 col-lg-7 col-xl-6">
+				<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+					 class="img-fluid" alt="Phone image">
+			</div>
+			<div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 bg-light h-50 d-flex align-items-center">
+
+				<form class="w-100" method="post" asp-controller="Auth" asp-action="Login">
+					<div class="text-center">
+
+						<h2 class="mb-3 fw-bold">Kullanıcı Girişi</h2>
+						<h6 class="text-black-50">Hesabınıza Giriş Yapınız</h6>
+
+					</div>
+
+					<!-- Email input -->
+					<div class="form-group mb-4 mt-3" style="border:1px solid black;border-radius:5px;">
+
+						<input type="text" class="form-control form-control-lg" placeholder="Kullanıcı Adı" asp-for="UserName" />
+						<span class="text-danger fw-bold" asp-validation-for="UserName"></span>
+					</div>
+
+					<!-- Password input -->
+					<div class="form-group mb-4 mt-3" style="border:1px solid black;border-radius:5px;">
+
+						<input asp-for="Password" type="password" class="form-control form-control-lg" placeholder="Şifre" />
+						<span class="text-danger fw-bold" asp-validation-for="Password"></span>
+
+					</div>
+
+
+
+					<!-- Submit button -->
+					<button type="submit" class="btn btn-primary btn-lg btn-block">Giriş Yap</button>
+
+
+					<div class="mt-2">
+						<span class="fw-bold text-danger">@TempData["LoginMassage"]</span>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<footer class="bg-light text-center text-lg-start">
+	<!-- Copyright -->
+	<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+		© 2020 Copyright:
+		<a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+	</div>
+	<!-- Copyright -->
+</footer>
+

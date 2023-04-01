@@ -1,0 +1,121 @@
+﻿@model List<CartDetailListViewModel>
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9">
+		<div class="container mt-2">
+			<nav class="navbar navbar-expand-lg navbar-light fs-5 bg-dark-subtle mt-4">
+				<!-- Container wrapper -->
+				<div class="container-fluid">
+					<!-- Toggle button -->
+					<button class="navbar-toggler"
+							type="button"
+							data-mdb-toggle="collapse"
+							data-mdb-target="#navbarCenteredExample"
+							aria-controls="navbarCenteredExample"
+							aria-expanded="false"
+							aria-label="Toggle navigation">
+						<i class="fas fa-bars"></i>
+					</button>
+
+					<!-- Collapsible wrapper -->
+					<div class="collapse navbar-collapse justify-content-center fw-bold"
+						 id="navbarCenteredExample">
+						<!-- Left links -->
+						<ul class="navbar-nav mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active fw-bold" aria-current="page" asp-area="Parent" asp-controller="Shop" asp-action="List" asp-route-id="">Ana Sayfa</a>
+							</li>
+
+							<!-- Navbar dropdown -->
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle"
+								   id="navbarDropdown"
+								   role="button"
+								   data-mdb-toggle="dropdown"
+								   aria-expanded="false">
+									Kategoriler
+								</a>
+								<!-- Dropdown menu -->
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<vc:categories></vc:categories>
+								</ul>
+							</li>
+
+						</ul>
+						<!-- Left links -->
+					</div>
+					<!-- Collapsible wrapper -->
+				</div>
+				<!-- Container wrapper -->
+			</nav>
+			@if (Model.Any())
+			{
+				decimal total = 0;
+				@foreach (var cart in Model)
+				{
+					
+					<div class="card m-3">
+						@*<input type="hidden" asp-for="@cart.Id" />*@
+						<div class="row g-0">
+							<div class="col-md-2">
+								<img src="~/images/product/@cart.ImagePath"
+							 class="img-fluid rounded-start" style="height:100%;" />
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<h5 class="card-title d-flex justify-content-center bg-secondary">@cart.ProductName.ToUpper()</h5>
+									<p class="card-text">
+										<b>Açıklama :</b>@cart.UnitPrice
+									</p>
+									<p class="card-text">
+										<b>Kategori :</b>@cart.Count
+									</p>
+									<p class="card-text"><b>Fiyat :</b> @cart.TotalPrice TL
+									</p>
+								
+								</div>
+							</div>
+						</div>
+						<div class="d-flex justify-content-end m-2">
+							<a asp-area="Parent" asp-controller="Cart" asp-action="DeleteCart" asp-route-id="@cart.Id" class="btn btn-danger  btn-rounded me-1">Spetten Çıkar</a>
+
+						</div>
+
+					</div>
+					
+					total+=cart.TotalPrice;
+				
+			
+					
+				}
+				
+@*				@foreach (var item in Model)
+				{
+					
+					a = +item.Total;
+					
+				}						
+				*@
+				<div class="card-body m-3 d-flex justify-content-end">
+
+						<p class="d-flex align-items-center me-2 fs-4"><b>Toplam Fiyat:</b> @total TL</p>
+						<a asp-area="Parent" asp-controller="Cart" asp-action="Buy" class="btn btn-outline-success btn-sm">Satın Al</a>
+
+					
+					</div>
+
+			}
+			else
+			{
+				<div class="alert alert-danger mt-2" role="alert">
+					<h5>Sepetinizde ürün bulunmamaktadır</h5>
+						 <a asp-area="Parent" asp-controller="Shop" asp-action="List" class="alert-link">Alışverişe Geri Dön</a>
+				</div>
+			}
+
+
+		</div>
+	</div>
+</div>
+

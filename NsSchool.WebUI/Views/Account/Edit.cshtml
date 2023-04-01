@@ -1,0 +1,120 @@
+﻿@model AccountEditViewModel
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	
+		<partial class="col-2" name="_PartialSlidebar"></partial>
+
+
+	<div class="container mt-4 col-9">
+		<form method="post" asp-controller="Account" asp-action="Edit" enctype="multipart/form-data">
+			<h2 class="text-center">Kullanıcı Güncelleme Sayfası</h2>
+			<div class="d-flex flex-row mb-3">
+				<div class="p-2 col-6">
+
+					<div class="form-group">
+						<input type="hidden" asp-for="Id" />
+						<div>
+							<label asp-for="IdentityNumber" class="fw-bold mb-1"></label>
+							<input type="text" asp-for="IdentityNumber" disabled="disabled" class="form-control" />
+							<span class="fw-bold text-danger" asp-validation-for="IdentityNumber"></span>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+
+						<div>
+							<label asp-for="FirstName" class="fw-bold mb-1"></label>
+							<input type="text" asp-for="FirstName" disabled="disabled" class="form-control" />
+							<span class="fw-bold text-danger" asp-validation-for="FirstName"></span>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<div>
+							<label asp-for="LastName" class="fw-bold mb-1"></label>
+							<input type="text" asp-for="LastName" disabled="disabled" class="form-control" />
+							<span class="fw-bold text-danger" asp-validation-for="LastName"></span>
+						</div>
+					</div>
+					@if (!User.IsStudent())
+					{
+						<div class="form-group">
+							<div>
+								<label asp-for="Email" class="fw-bold mb-1"></label>
+								<input type="email" asp-for="Email" class="form-control" />
+								<span class="fw-bold text-danger" asp-validation-for="Email"></span>
+							</div>
+						</div>
+					}
+					
+
+
+
+
+
+
+				</div>
+				<div class="p-2 col-6">
+
+					<div class="form-group">
+						<div>
+							<label asp-for="BirthDay" class="fw-bold mb-1"></label>
+							<input type="text" asp-for="BirthDay" id="txtDate" asp-format="{0:dd/MM/yyyy}" class="form-control" />
+							<span class="fw-bold text-danger" asp-validation-for="BirthDay"></span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div>
+							<label asp-for="Adress" class="fw-bold mb-1"></label>
+							<input type="text" asp-for="Adress" class="form-control" />
+							<span class="fw-bold text-danger" asp-validation-for="Adress"></span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div>
+							<label asp-for="PhoneNumber" class="fw-bold mb-1"></label>
+							<input type="text" asp-for="PhoneNumber" class="form-control" />
+							<span class="fw-bold text-danger" asp-validation-for="PhoneNumber"></span>
+						</div>
+					</div>
+					@if (!User.IsParent())
+					{
+						<div class="form-group">
+							<div>
+								<label asp-for="ImagePath" class="fw-bold mb-1"></label>
+								<input type="file" asp-for="ImagePath" class="form-control" />
+								<span class="fw-bold text-danger" asp-validation-for="ImagePath"></span>
+							</div>
+						</div>
+					}
+				
+
+				</div>
+
+			</div>
+			<button type="submit" class="btn btn-success" style="float:right">Kaydet</button>
+		</form>
+	</div>
+</div>
+
+
+@section Scripts{
+
+		<script type="text/javascript">
+			$(function () {
+				$("#txtDate").datepicker({
+					dateFormat: 'dd/mm/yy',
+					monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+			dayNamesMin: ["Pts", "Sl", "Çrş", "Prş", "Cm", "Cts", "Pzr"]
+				});
+			});
+		</script>
+
+}
+
+
+

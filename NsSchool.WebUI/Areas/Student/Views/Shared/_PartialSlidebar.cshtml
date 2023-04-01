@@ -1,0 +1,25 @@
+﻿@if (User.IsStudent())
+{
+    <div class="col-2 h-100 d-inline-block ">
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse  bg-dark-subtle p-2" style="height:92vh;">
+            <div class="position-sticky">
+                <div class="list-group list-group-flush p-1 w-100">
+                    <a asp-area="Default" asp-controller="Home" asp-action="Index"
+                   class="list-group-item list-group-item-action py-2 ripple"
+                   aria-current="true">
+                        <i class="fas fa-home me-1"></i><span>Anasayfa</span>
+                    </a>
+
+                    <a asp-area="Student" asp-controller="ClassRoom" asp-action="List" asp-route-itemid="@User.GetId()" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chalkboard me-1"></i> <span>Sınıf</span></a>
+
+                    <a asp-area="Student" asp-controller="Teacher" asp-action="List" asp-route-itemid="@User.GetId()" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chalkboard-teacher me-1"></i><span>Öğretmen</span></a>
+
+                    <a asp-area="Student" asp-controller="Announcement" asp-action="List" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-scroll me-1"></i><span>Duyurular</span></a>
+
+
+
+                </div>
+            </div>
+        </nav>
+    </div>
+}

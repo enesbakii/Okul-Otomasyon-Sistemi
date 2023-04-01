@@ -1,0 +1,29 @@
+﻿@model List<ClassRoomStudentViewModel>
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9">
+		<div class="container mt-2">
+
+
+			@{
+				var classList = Model.GroupBy(x => x.ClassRoom).ToList();
+				foreach (var studentClass in classList)
+				{
+					var students = Model.Where(x => x.ClassRoom == studentClass.Key).ToList();
+
+					<div class="card text-body bg-light mb-3">
+						<div class="card-header">@studentClass.Key</div>
+
+						@foreach (var student in students)
+						{
+							<div class="card-body">
+								<p class="card-title fw-bold">@student.FullName</p>								
+							</div>
+						}
+					</div>
+				}
+			}		
+		</div>
+	</div>
+

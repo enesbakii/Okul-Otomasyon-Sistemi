@@ -1,0 +1,25 @@
+﻿@model CategoryFormViewModel
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9 mt-3">
+		<div class="col-5 offset-4">
+
+			<form method="post" asp-area="Admin" asp-controller="Shop" asp-action="AddCategory">
+				
+				<h2 class="fw-bold text-center text-secondary mt-2 mb-2">Kategori Ekleme Sayfası</h2>
+				<h4 class="fw-bold text-center text-danger">@ViewBag.ErrorMessage </h4>
+
+				<div class="form-group mt-2">
+					<label class="form-label fw-bold" asp-for="Name"></label>
+					<input type="text" class="form-control" asp-for="Name" />
+					<span class="fw-bold text-danger" asp-validation-for="Name"></span>
+
+				</div>
+				<button type="submit" class="btn btn-primary mt-2 btn-block">Kaydet</button>
+			</form>
+
+		</div>
+	</div>
+
+</div>

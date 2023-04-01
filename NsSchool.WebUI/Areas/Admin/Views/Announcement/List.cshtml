@@ -1,0 +1,109 @@
+﻿@model List<AnnouncementListViewModel>
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9 mt-3">
+		<ul class="nav justify-content-end">
+
+			<li class="nav-item">
+				<a class="btn btn-success mb-2" asp-area="Admin" asp-controller="Announcement" asp-action="AddAnnouncement">Duyuru Ekle</a>
+			</li>
+
+		</ul>
+
+		<table class="table table-hover mt-3" id="announcementList">
+			<thead class="table-info mb-1">
+				<tr>
+					<th>Başlık</th>
+					<th>Açıklama</th>
+					<th>Yayınlanma Tarihi</th>
+					<th>Dosya</th>
+					<th>Aksiyon</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				@foreach (var announcement in Model)
+				{
+					
+					<tr>
+						<td>@announcement.Title</td>
+						<td>@announcement.Discripton</td>
+						<td>
+							@if (announcement.ModifiedDate==null)
+							{
+								@announcement.CreatedDate.ToShortDateString()
+							}
+							else
+							{
+								@announcement.ModifiedDate.Value.ToShortDateString()
+							}
+							</td>
+						<td><a asp-area="Admin" asp-controller="Announcement" asp-action="Download" asp-route-filePath="@announcement.Path">@announcement.Path</a></td>
+							<td>
+							<a asp-area="Admin" asp-controller="Announcement" asp-action="EditAnnouncement" asp-route-id="@announcement.Id" class="btn btn-warning btn-sm btn-rounded">Düzenle</a>
+							<a asp-area="Admin" asp-controller="Announcement" asp-action="Delete" data-id="@announcement.Id" class="btn btn-danger btn-sm btn-rounded delete">Sil</a>
+						</td>
+					</tr>
+				}
+
+				
+			</tbody>
+
+		</table>
+
+
+	</div>
+</div>
+
+@section Scripts
+	{
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.13.1/b-2.3.2/sl-1.5.0/datatables.min.js"></script>
+
+		<script>
+			$('#announcementList .delete').click(function (e) {
+				e.preventDefault(); 
+				var announcementId = $(this).data('id'); 
+				Swal.fire({
+					title: 'Emin misin?',
+					text: "Dikkat! Ürün Silinecektir.",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Onaylıyorum.',
+					cancelButtonText: "İptal"
+				}).then((result) => {
+					if (result.isConfirmed) {
+						$.ajax({
+						url: '/admin/announcement/delete/' + announcementId,
+							method: "GET"
+						}).done(function () {
+							Swal.fire(
+								'Silindi!',
+								'Ürün Başarıyla Silindi.',
+								'success'
+							).then(() => { window.location.reload() });
+						}).fail(function () {
+							Swal.fire(
+								'Hata!',
+								'Bir hata oluştu, ürün silinemedi.'
+							)
+						});
+					}
+				})
+			})
+
+
+			 $(document).ready(function() {
+            $('#announcementList').DataTable({ 
+				pageLength: 10,
+				language: {
+					url: '//cdn.datatables.net/plug-ins/1.13.1/i18n/tr.json',
+				}
+			});
+        });
+
+		</script>
+}
+

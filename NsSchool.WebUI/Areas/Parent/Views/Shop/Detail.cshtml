@@ -1,0 +1,81 @@
+﻿@model ProductListViewModel
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9">
+		<div class="container mt-2">
+			<nav class="navbar navbar-expand-lg navbar-light fs-5 bg-dark-subtle mt-4">
+				<!-- Container wrapper -->
+				<div class="container-fluid">
+					<!-- Toggle button -->
+					<button class="navbar-toggler"
+							type="button"
+							data-mdb-toggle="collapse"
+							data-mdb-target="#navbarCenteredExample"
+							aria-controls="navbarCenteredExample"
+							aria-expanded="false"
+							aria-label="Toggle navigation">
+						<i class="fas fa-bars"></i>
+					</button>
+
+					<!-- Collapsible wrapper -->
+					<div class="collapse navbar-collapse justify-content-center fw-bold"
+						 id="navbarCenteredExample">
+						<!-- Left links -->
+						<ul class="navbar-nav mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active fw-bold" aria-current="page" asp-area="Parent" asp-controller="Shop" asp-action="List" asp-route-id="">Ana Sayfa</a>
+							</li>
+
+							<!-- Navbar dropdown -->
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle"
+								   id="navbarDropdown"
+								   role="button"
+								   data-mdb-toggle="dropdown"
+								   aria-expanded="false">
+									Kategoriler
+								</a>
+								<!-- Dropdown menu -->
+								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<vc:categories></vc:categories>
+								</ul>
+							</li>
+
+						</ul>
+						<!-- Left links -->
+					</div>
+					<!-- Collapsible wrapper -->
+				</div>
+				<!-- Container wrapper -->
+			</nav>
+			<form method="post" asp-area="Parent" asp-controller="Cart" asp-action="AddCart">
+				<input type="hidden" asp-for="@Model.Id"/>
+				<input type="hidden" asp-for="UnitPrice"/>
+				<div class="row row-cols-2 row-cols-md-2 g-4 mt-2 justify-content-center">
+					<div class="col">
+						<div class="card">
+							<img src="~/images/product/@Model.ImagePath" class="card-img-top" alt="Hollywood Sign on The Hill" />
+							<div class="card-body">
+								<h5 class="card-title">@Model.Name</h5>
+								<p class="card-text">
+									<b>Açıklama :</b>@Model.Discription
+								</p>
+								<p class="card-text">
+									<b>Fiyat :</b>@Model.UnitPrice
+								</p>
+							</div>
+							<div class="d-flex justify-content-end m-2">
+								<label class="me-2">Adet</label>
+								<input asp-for="Count" class="me-2" type="number" value="1" />
+
+								<button type="submit" class="btn btn-warning btn-lg btn-rounded me-1">Sepete Ekle</button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

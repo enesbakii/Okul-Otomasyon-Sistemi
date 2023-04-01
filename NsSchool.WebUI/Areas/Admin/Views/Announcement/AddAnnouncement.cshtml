@@ -1,0 +1,42 @@
+﻿@model AnnouncementFormViewModel
+
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9 mt-3">
+		<div class="col-5 offset-4">
+			<form method="post" asp-area="Admin" asp-controller="Announcement" asp-action="AddAnnouncement" enctype="multipart/form-data">
+				<h2 class="fw-bold text-center text-secondary mt-2 mb-2">Duyuru Ekleme Sayfası</h2>
+				<div class="form-group mt-2">
+					<label class="form-label fw-bold" asp-for="Title"></label>
+					<input type="text" class="form-control" asp-for="Title" />
+					<span class="fw-bold text-danger" asp-validation-for="Title"></span>
+
+				</div>
+
+				<div class="form-group mt-2">
+					<label class="form-label fw-bold" asp-for="Discription"></label>
+					<textarea class="form-control" rows="4" asp-for="Discription" style="resize:none"></textarea>
+					<span class="fw-bold text-danger" asp-validation-for="Discription"></span>
+
+				</div>
+
+				<div class="form-group mt-2">
+					<label class="form-label fw-bold" asp-for="Path"></label>
+					<input type="file" class="form-control" asp-for="Path" />
+
+					@if (!string.IsNullOrWhiteSpace(ViewBag.FileError))
+					{
+						<div class="alert alert-danger mt-2">
+							@ViewBag.FileError
+						</div>
+					}
+				</div>
+
+				<button type="submit" class="btn btn-primary mt-2 btn-block">Kaydet</button>
+
+			</form>
+		</div>
+
+	</div>
+</div>

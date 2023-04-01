@@ -1,0 +1,33 @@
+﻿@model List<AnnouncementViewModel>
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9">
+		<div class="container">
+			<h2 class="fw-bold text-center text-secondary mt-2 mb-2">DUYURULAR</h2>
+			@foreach (var announcement in Model)
+			{
+					<div class="card mt-2">
+				<div class="card-body">
+					<h5 class="card-title">@announcement.Title</h5>
+					<p class="card-text">@announcement.Discripton</p>
+						<a asp-area="Default" asp-controller="Dash" asp-action="Download" asp-route-filePath="@announcement.Path">@announcement.Path</a>
+					<p class="card-text"><small class="text-muted">
+								@if (announcement.ModifiedDate == null)
+								{
+
+									@announcement.CreatedDate.ToShortDateString()
+								}
+
+								else
+								{
+									@announcement.ModifiedDate.Value.ToShortDateString()
+								}
+					</small></p>
+				</div>
+			</div>
+			}
+		
+		</div>
+	</div>
+</div>

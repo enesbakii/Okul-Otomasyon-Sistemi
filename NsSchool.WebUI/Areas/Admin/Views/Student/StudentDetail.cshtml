@@ -1,0 +1,279 @@
+﻿@model StudentDetailViewModel
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9 mt-3">
+		<div class="container mt-2 bg-light bg-gradient p-4">
+
+			<div class="row mb-4">
+				<h4 class="mt-2">Öğrenci Bilgileri</h4>
+
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="StundetFirstName">Adı</label>
+						<input class="form-control" disabled="disabled" asp-for="StundetFirstName" />
+
+
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="StudentLastName">Soyadı</label>
+						<input type="text" class="form-control" disabled="disabled" asp-for="StudentLastName" />
+
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row mb-4">
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="StudentUserName">Kullanıcı Adı</label>
+						<input class="form-control" disabled="disabled" asp-for="StudentUserName" />
+
+
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="StudentPassword">Şifre</label>
+						<input type="text" class="form-control" disabled="disabled" asp-for="StudentPassword" />
+
+
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="row mb-4">
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="StudentIdentityPerson">Kimlik No</label>
+						<input class="form-control" disabled="disabled" asp-for="StudentIdentityPerson" />
+
+
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="StudentNumber">Öğrenci No</label>
+						<input type="text" class="form-control" disabled="disabled" asp-for="StudentNumber" />
+
+
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="row mb-4">
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="ClassRoom">Sınıfı</label>
+						<input class="form-control" disabled="disabled" asp-for="ClassRoom" />
+
+
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="StudentGrade">Kademe</label>
+						<input type="text" class="form-control" disabled="disabled" asp-for="StudentGrade" />
+
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row mb-4">
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="AreaInformation">Alan Bilgisi</label>
+						<input class="form-control" disabled="disabled" asp-for="AreaInformation" />
+
+
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="StundetBirthDay">Doğum Tarihi</label>
+						<input type="text" class="form-control" disabled="disabled" asp-for="StundetBirthDay" asp-format="{0:dd/MM/yyyy}" />
+
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row mb-4">
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="StudentBirthPlace">Doğum Yeri</label>
+						<input class="form-control" disabled="disabled" asp-for="StudentBirthPlace" />
+
+
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="StudentPhoneNumber">Telefon No</label>
+						<input class="form-control" disabled="disabled" rows="4" asp-for="StudentPhoneNumber"></input>
+
+
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Text input -->
+
+
+			<div class="col">
+				<div class="form-group">
+					<label class="form-label fw-bold" asp-for="StudentAdress">Adres</label>
+					<textarea class="form-control" disabled="disabled" rows="4" asp-for="StudentAdress"></textarea>
+
+
+				</div>
+			</div>
+
+
+
+
+			<div class="row mb-4 mt-2">
+				<h4 class="mt-2">Veli Bilgileri</h4>
+
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="ParentFirstName">Adı</label>
+						<input class="form-control" disabled="disabled" asp-for="ParentFirstName" />
+
+
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="ParentLastName">Soyadı</label>
+						<input type="text" disabled="disabled" class="form-control" asp-for="ParentLastName" />
+
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row mb-4">
+				
+
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="ParentUserName">Kullanıcı Adı</label>
+						<input class="form-control" disabled="disabled" asp-for="ParentUserName" />
+
+
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="ParentPassword">Şifre</label>
+						<input type="text" disabled="disabled" class="form-control" asp-for="ParentPassword" />
+
+
+					</div>
+				</div>
+			</div>
+
+			<!-- Text input -->
+			<div class="row mb-4">
+
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="ParentIdentity">Kimlik No</label>
+						<input type="text" class="form-control" disabled="disabled" asp-for="ParentIdentity" />
+
+
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="ParentPhoneNumber">Telefon No</label>
+						<input type="text" class="form-control" disabled="disabled" asp-for="ParentPhoneNumber" />
+
+
+					</div>
+				</div>
+
+			</div>
+
+
+
+			<div class="row mb-4">
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="ParentEmail">Email</label>
+						<input type="text" disabled="disabled" class="form-control" asp-for="ParentEmail" />
+
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="ParentJob">Meslek</label>
+						<input type="text" class="form-control" disabled="disabled" asp-for="ParentJob" />
+
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="row mb-4">
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="ParentBirthDay">Doğum Tarihi</label>
+
+						@*<input asp-for="BirthDay" class="form-control" type="text" id="my_date_picker">*@
+
+						<input type="text" asp-for="ParentBirthDay" asp-format="{0:dd/MM/yyyy}" class="form-control txtDate" disabled="disabled" />
+						<div>
+						</div>
+
+
+
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label class="form-label fw-bold" asp-for="ParentBirthPlace">Doğum Yeri</label>
+						<input class="form-control" asp-for="ParentBirthPlace" disabled="disabled" />
+
+
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<!-- Message input -->
+			<div class="form-group mb-4">
+				<label class="form-label fw-bold" asp-for="ParentAdress">Adres</label>
+				<textarea class="form-control" rows="4" asp-for="ParentAdress" disabled="disabled"></textarea>
+
+
+			</div>
+
+
+			<!-- Submit button -->
+		
+
+		</div>
+	</div>
+</div>

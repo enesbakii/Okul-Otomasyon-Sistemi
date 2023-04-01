@@ -1,0 +1,391 @@
+﻿@model StudentEditViewModel
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9 mt-3">
+		<div class="container mt-2 bg-light bg-gradient p-4">
+
+			<form method="post" asp-area="Admin" asp-controller="Student" asp-action="Edit" enctype="multipart/form-data">
+				<h2 class="fw-bold text-center text-secondary mt-2 mb-2">Öğrenci Güncelleme Sayfası</h2>
+				<h4 class="fw-bold text-center text-danger">@ViewBag.ErrorMessage</h4>
+				<input type="hidden" asp-for="Id"/>
+				<input type="hidden" asp-for="ParentId"/>
+				<h4 class="fw-bold text-center text-danger">@ViewBag.ErrorMessage1 </h4>
+				<h4 class="fw-bold text-center text-danger">@ViewBag.ErrorMessage2 </h4>
+
+				<div class="row mb-4">
+					<h4 class="mt-2">Öğrenci Bilgileri</h4>
+
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="StundetFirstName"></label>
+							<input class="form-control" asp-for="StundetFirstName" />
+							<span class="fw-bold text-danger" asp-validation-for="StundetFirstName"></span>
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="StudentLastName"></label>
+							<input type="text" class="form-control" asp-for="StudentLastName" />
+							<span class="fw-bold text-danger" asp-validation-for="StudentLastName"></span>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="StudentUserName"></label>
+							<input class="form-control" asp-for="StudentUserName" />
+							<span class="fw-bold text-danger" asp-validation-for="StudentUserName"></span>
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="StudentPassword"></label>
+							<input type="text" class="form-control" asp-for="StudentPassword" />
+							<span class="fw-bold text-danger" asp-validation-for="StudentPassword"></span>
+
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input -->
+				<div class="row mb-4">
+
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="StudentIdentityPerson"></label>
+							<input type="text" class="form-control" asp-for="StudentIdentityPerson" />
+							<span class="fw-bold text-danger" asp-validation-for="StudentIdentityPerson"></span>
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="StudentGender"></label>
+							<div>
+								@if (Model.StudentGender==true)
+								{
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="StudentGender" checked value="true" />
+										<label class="form-check-label">Erkek</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="StudentGender"  value="false" />
+										<label class="form-check-label">Kadın</label>
+									</div>
+								}
+								else
+								{
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="StudentGender"  value="true" />
+										<label class="form-check-label">Erkek</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="StudentGender" checked value="false" />
+										<label class="form-check-label">Kadın</label>
+									</div>
+								}
+
+								
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="row mb-4">
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="StudentNumber"></label>
+							<input type="text" class="form-control" asp-for="StudentNumber" />
+							<span class="fw-bold text-danger" asp-validation-for="StudentNumber"></span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ClassRoom"></label>
+							<select class="form-control" asp-for="ClassRoom">
+								<option>@Model.ClassRoom</option>
+								<option value="9.Sınıf">9.Sınıf</option>
+								<option value="10.Sınıf">10. Sınıf</option>
+								<option value="11.Sınıf">11. Sınıf</option>
+								<option value="12.Sınıf">12. Sınıf</option>
+							</select>
+							<span class="fw-bold text-danger" asp-validation-for="ClassRoom"></span>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row mb-4">
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="StudentGrade"></label>
+							<input type="text" class="form-control" disabled="disabled" value="Anadolu Lisesi" asp-for="StudentGrade" />
+							<span class="fw-bold text-danger" asp-validation-for="StudentGrade"></span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="AreaInformation"></label>
+							<select class="form-control" asp-for="AreaInformation">
+								<option>@Model.AreaInformation </option>
+								<option value="9.Sınıf">9.Sınıf</option>
+								<option value="10.Sınıf">10. Sınıf</option>
+								<option value="MF">MF</option>
+								<option value="TM">TM</option>
+								<option value="TS">TS</option>
+							</select>
+							<span class="fw-bold text-danger" asp-validation-for="AreaInformation"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-4">
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="StundetBirthDay"></label>
+
+							@*<input asp-for="BirthDay" class="form-control" type="text" id="my_date_picker">*@
+
+							<input type="text" asp-for="StundetBirthDay" asp-format="{0:dd/MM/yyyy}" class="form-control txtDate" />
+							<div>
+							</div>
+
+							<span class="fw-bold text-danger" asp-validation-for="StundetBirthDay"></span>
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="StudentBirthPlace"></label>
+							<input class="form-control" asp-for="StudentBirthPlace" />
+							<span class="fw-bold text-danger" asp-validation-for="StudentBirthPlace"></span>
+
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<!-- Message input -->
+				<div class="form-group mb-4">
+					<label class="form-label fw-bold" asp-for="StudentAdress"></label>
+					<textarea class="form-control" rows="4" asp-for="StudentAdress"></textarea>
+					<span class="fw-bold text-danger" asp-validation-for="StudentAdress"></span>
+
+				</div>
+
+				<div class="row mb-4">
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="StudentPhoneNumber"></label>
+							<input type="text" class="form-control" asp-for="StudentPhoneNumber" placeholder="05555555555" />
+							<span class="fw-bold text-danger" asp-validation-for="StudentPhoneNumber"></span>
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group mb-4">
+							<label class="form-label fw-bold" asp-for="StudentImagePath"></label>
+
+							<input asp-for="StudentImagePath" type="file" class="form-control" />
+
+						</div>
+						@if (!string.IsNullOrWhiteSpace(ViewBag.FileError))
+						{
+							<div class="alert alert-danger mt-2">
+								@ViewBag.FileError
+							</div>
+						}
+					</div>
+				</div>
+
+
+
+
+
+				<div class="row mb-4">
+					<h4 class="mt-2">Veli Bilgileri</h4>
+
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ParentFirstName"></label>
+							<input class="form-control" asp-for="ParentFirstName" />
+							<span class="fw-bold text-danger" asp-validation-for="ParentFirstName"></span>
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ParentLastName"></label>
+							<input type="text" class="form-control" asp-for="ParentLastName" />
+							<span class="fw-bold text-danger" asp-validation-for="ParentLastName"></span>
+
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row mb-4">
+
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ParentUserName"></label>
+							<input class="form-control" asp-for="ParentUserName" />
+							<span class="fw-bold text-danger" asp-validation-for="ParentUserName"></span>
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ParentPassword"></label>
+							<input type="text" class="form-control" asp-for="ParentPassword" />
+							<span class="fw-bold text-danger" asp-validation-for="ParentPassword"></span>
+
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input -->
+				<div class="row mb-4">
+
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ParentIdentity"></label>
+							<input type="text" class="form-control" asp-for="ParentIdentity" />
+							<span class="fw-bold text-danger" asp-validation-for="ParentIdentity"></span>
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ParentGender"></label>
+							<div>
+								@if (Model.StudentGender == true)
+								{
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="ParentGender" checked value="true" />
+										<label class="form-check-label">Erkek</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="ParentGender" value="false" />
+										<label class="form-check-label">Kadın</label>
+									</div>
+								}
+								else
+								{
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="ParentGender" value="true" />
+										<label class="form-check-label">Erkek</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="ParentGender" checked value="false" />
+										<label class="form-check-label">Kadın</label>
+									</div>
+								}
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="row mb-4">
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ParentEmail"></label>
+							<input type="email" class="form-control" asp-for="ParentEmail" />
+							<span class="fw-bold text-danger" asp-validation-for="ParentEmail"></span>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ParentJob"></label>
+							<input type="text" class="form-control" asp-for="ParentJob" />
+							<span class="fw-bold text-danger" asp-validation-for="ParentJob"></span>
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<div class="row mb-4">
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ParentBirthDay"></label>
+
+							@*<input asp-for="BirthDay" class="form-control" type="text" id="my_date_picker">*@
+
+							<input type="text" asp-for="ParentBirthDay" asp-format="{0:dd/MM/yyyy}" class="form-control txtDate" />
+							<div>
+							</div>
+
+							<span class="fw-bold text-danger" asp-validation-for="ParentBirthDay"></span>
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ParentBirthPlace"></label>
+							<input class="form-control" asp-for="ParentBirthPlace" />
+							<span class="fw-bold text-danger" asp-validation-for="ParentBirthPlace"></span>
+
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<!-- Message input -->
+				<div class="form-group mb-4">
+					<label class="form-label fw-bold" asp-for="ParentAdress"></label>
+					<textarea class="form-control" rows="4" asp-for="ParentAdress"></textarea>
+					<span class="fw-bold text-danger" asp-validation-for="ParentAdress"></span>
+
+				</div>
+
+				<div class="row mb-4">
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="ParentPhoneNumber"></label>
+							<input type="text" class="form-control" asp-for="ParentPhoneNumber" placeholder="05555555555" />
+							<span class="fw-bold text-danger" asp-validation-for="ParentPhoneNumber"></span>
+
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Submit button -->
+				<button type="submit" class="btn btn-primary btn-block mb-4">Güncelle</button>
+
+			</form>
+		</div>
+	</div>
+</div>
+@section Scripts{
+
+	<script type="text/javascript">
+		$(function () {
+			$(".txtDate").datepicker({
+				dateFormat: 'dd/mm/yy',
+				monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+				dayNamesMin: ["Pts", "Sl", "Çrş", "Prş", "Cm", "Cts", "Pzr"]
+			});
+		});
+	</script>
+
+}

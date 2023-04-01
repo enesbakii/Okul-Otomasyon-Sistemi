@@ -1,0 +1,166 @@
+﻿@using NsSchool.WebUI.Areas.Enums;
+@model TeacherAddViewModel
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9 mt-3">
+		<div class="container mt-2 bg-light bg-gradient p-4">
+
+			<form method="post" asp-area="Admin" asp-controller="Teacher" asp-action="AddTeacher" enctype="multipart/form-data">
+				<h2 class="fw-bold text-center text-secondary mt-2 mb-2">Öğretmen Ekleme Sayfası</h2>
+
+				<h4 class="fw-bold text-center text-danger">@ViewBag.ErrorMessage</h4>
+
+				<div class="row mb-4">
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="FirstName"></label>
+							<input type="text" class="form-control" asp-for="FirstName" />
+							<span class="fw-bold text-danger" asp-validation-for="FirstName"></span>
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="LastName"></label>
+							<input class="form-control" asp-for="LastName" />
+							<span class="fw-bold text-danger" asp-validation-for="LastName"></span>
+
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input -->
+				<div class="row mb-4">
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="IdentityPerson"></label>
+							<input type="text" class="form-control" asp-for="IdentityPerson" />
+							<span class="fw-bold text-danger" asp-validation-for="IdentityPerson"></span>
+
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label asp-for="Branch" class="form-label fw-bold"></label>
+							<br />
+							<select asp-for="Branch" class="form-control" asp-items="Html.GetEnumSelectList<BranchTypeEnum>()">
+								<option disabled selected value="">Seçiniz</option>
+							</select>
+							<span class="fw-bold text-danger" asp-validation-for="Branch"></span>
+						</div>
+					</div>
+
+
+				</div>
+
+				<!-- Email input -->
+				<div class="row mb-4">
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="Email"></label>
+							<input type="email" class="form-control" asp-for="Email" />
+							<span class="fw-bold text-danger" asp-validation-for="Email"></span>
+						</div>
+					</div>
+
+					<div class="col">
+						<div class="form-group">
+							<label class="form-label fw-bold" asp-for="Gender"></label>
+							<div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="Gender" checked value="true" />
+									<label class="form-check-label">Erkek</label>
+								</div>
+
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="Gender" value="false" />
+									<label class="form-check-label">Kadın</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="row mb-4">
+						<div class="col">
+							<div class="form-group">
+								<label class="form-label fw-bold" asp-for="BirthDay"></label>
+								<input type="text" asp-for="BirthDay" id="txtDate" asp-format="{0:dd/MM/yyyy}" class="form-control" />
+								<span class="fw-bold text-danger" asp-validation-for="BirthDay"></span>
+
+
+
+
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label class="form-label fw-bold" asp-for="BirthPlace"></label>
+								<input class="form-control" asp-for="BirthPlace" />
+								<span class="fw-bold text-danger" asp-validation-for="BirthPlace"></span>
+
+							</div>
+						</div>
+					</div>
+
+
+
+
+					<!-- Message input -->
+					<div class="form-group mb-4">
+						<label class="form-label fw-bold" asp-for="Adress"></label>
+						<textarea class="form-control" rows="4" asp-for="Adress"></textarea>
+						<span class="fw-bold text-danger" asp-validation-for="Adress"></span>
+
+					</div>
+
+					<div class="row mb-4">
+						<div class="col">
+							<div class="form-group mb-4">
+								<label class="form-label fw-bold" asp-for="ImagePath"></label>
+
+								<input asp-for="ImagePath" type="file" class="form-control" />
+
+							</div>
+							@if (!string.IsNullOrWhiteSpace(ViewBag.FileError))
+							{
+								<div class="alert alert-danger mt-2">
+									@ViewBag.FileError
+								</div>
+							}
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label class="form-label fw-bold" asp-for="PhoneNumber"></label>
+								<input type="tel" class="form-control" asp-for="PhoneNumber" placeholder="0555 555 55 55" />
+								<span class="fw-bold text-danger" asp-validation-for="PhoneNumber"></span>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+
+				<!-- Submit button -->
+				<button type="submit" class="btn btn-primary btn-block mb-4">Ekle</button>
+
+			</form>
+		</div>
+	</div>
+</div>
+@section Scripts{
+
+	<script type="text/javascript">
+		$(function () {
+			$("#txtDate").datepicker({
+				dateFormat: 'dd/mm/yy',
+				monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+				dayNamesMin: ["Pts", "Sl", "Çrş", "Prş", "Cm", "Cts", "Pzr"]
+			});
+		});
+	</script>
+
+}

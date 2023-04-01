@@ -1,0 +1,7 @@
+﻿@model List<StudentListViewModel>
+@foreach(var student in Model)
+{
+	<li>
+		<a class="dropdown-item" href="#">@student.FullName</a>
+	</li>
+}

@@ -1,0 +1,124 @@
+﻿@*@using NsSchool.WebUI.Areas.Extensions;*@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:60px;">
+	<!-- Container wrapper -->
+	<div class="container-fluid">
+		<!-- Toggle button -->
+		<button class="navbar-toggler"
+				type="button"
+				data-mdb-toggle="collapse"
+				data-mdb-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+			<i class="fas fa-bars"></i>
+		</button>
+
+		<!-- Collapsible wrapper -->
+		<div class="collapse navbar-collapse ms-4" id="navbarSupportedContent">
+			<!-- Navbar brand -->
+			<a class="navbar-brand mt-2 mt-lg-0" asp-area="Default" asp-controller="Dash" asp-action="Index">
+				<img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+					 height="15"
+					 alt="MDB Logo"
+					 loading="lazy" />
+			</a>
+
+		</div>
+		<!-- Collapsible wrapper -->
+		<!-- Right elements -->
+		<div class="d-flex align-items-center">
+			<!-- Icon -->
+			<a asp-area="Parent" asp-controller="Cart" asp-action="ListCart" asp-route-id="@User.GetId()" class="text-reset me-4">
+				<i  class="fas fa-shopping-basket"></i>
+			</a>
+
+			<!-- Notifications -->
+			<div class="dropdown">
+				<a class="text-reset me-4 dropdown-toggle hidden-arrow"
+				   id="navbarDropdownMenuLink"
+				   role="button"
+				   data-mdb-toggle="dropdown"
+				   aria-expanded="false">
+					<i class="fas fa-envelope"></i>
+					<span class="badge rounded-pill badge-notification bg-danger">1</span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-end"
+					aria-labelledby="navbarDropdownMenuLink">
+					
+					@await Component.InvokeAsync("Students")
+			
+				</ul>
+			</div>
+			<!-- Avatar -->
+			<div class="dropdown me-4">
+				<a class="dropdown-toggle d-flex align-items-center badge btn btn-outline bg-primary text-wrap text-white"
+				   href="#"
+				   id="navbarDropdownMenuAvatar"
+				   role="button"
+				   data-mdb-toggle="dropdown"
+				   aria-expanded="false">
+					@if (string.IsNullOrWhiteSpace(User.GetImagePath()))
+					{
+
+						<img src="~/images/personel/person-circle.svg"
+						 class="rounded-circle me-2"
+						 height="25"
+						 alt="Black and White Portrait of a Man"
+						 loading="lazy" />
+					}
+					else
+					{
+						if (User.IsStudent())
+						{
+							<img src="~/images/student/@User.GetImagePath()"
+						 class="rounded-circle me-2"
+						 height="25"
+						 alt="Black and White Portrait of a Man"
+						 loading="lazy" />
+						}
+						else if (User.IsTeacher())
+						{
+							<img src="~/images/teacher/@User.GetImagePath()"
+						 class="rounded-circle me-2"
+						 height="25"
+						 alt="Black and White Portrait of a Man"
+						 loading="lazy" />
+						}
+						else
+						{
+							<img src="~/images/personel/@User.GetImagePath()"
+						 class="rounded-circle me-2"
+						 height="25"
+						 alt="Black and White Portrait of a Man"
+						 loading="lazy" />
+						}
+
+					}
+					@User.GetFirstName() @User.GetLastName()
+				</a>
+				<ul class="dropdown-menu dropdown-menu-end"
+					aria-labelledby="navbarDropdownMenuAvatar">
+					<li>
+						<a class="dropdown-item" asp-area="default" asp-controller="Account" asp-action="Edit" asp-route-itemid="@User.GetId()">Kullanıcı Bilgileri Güncelle</a>
+					</li>
+					<li>
+						<a class="dropdown-item" asp-area="default" asp-controller="Account" asp-action="EditPassword">Şifre Değiştir</a>
+					</li>
+					<li>
+						<a class="dropdown-item" asp-area="default" asp-controller="Auth" asp-action="Logout">Çıkış Yap</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- Right elements -->
+	</div>
+	<!-- Container wrapper -->
+</nav>
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

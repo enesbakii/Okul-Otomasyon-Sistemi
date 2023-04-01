@@ -1,0 +1,77 @@
+﻿@model List<AnnouncementViewModel>
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9">
+		<div class="container mt-2">
+			<table class="table table-hover mt-3" id="announcementList">
+			<thead class="table-info mb-1">
+				<tr>
+					<th>Başlık</th>
+					<th>Açıklama</th>
+					<th>Yayınlanma Tarihi</th>
+					<th>Dosya</th>
+					<th>Detay</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				@foreach (var announcement in Model)
+				{
+					
+					<tr>
+						<td class="fw-bold">@announcement.Title</td>
+						@if (announcement.Discripton.Length>10)
+							{
+								<td>@announcement.Discripton.Substring(0,10) ....</td>
+							}
+							else
+							{
+								<td>@announcement.Discripton</td>
+							}
+						
+						<td>
+							@if (announcement.ModifiedDate==null)
+							{
+								@announcement.CreatedDate.ToShortDateString()
+							}
+							else
+							{
+								@announcement.ModifiedDate.Value.ToShortDateString()
+							}
+							</td>
+							<td><a asp-area="Student" asp-controller="Announcement" asp-action="Download" asp-route-filePath="@announcement.Path">@announcement.Path</a></td>
+							<td>
+							<a asp-area="Student" asp-controller="Announcement" asp-action="Details" asp-route-id="@announcement.Id" class="btn btn-primary btn-sm btn-rounded">Detay</a>
+
+						</td>
+					</tr>
+				}
+
+				
+			</tbody>
+
+		</table>
+
+		</div>
+	</div>
+</div>
+
+@section Scripts
+	{
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.13.1/b-2.3.2/sl-1.5.0/datatables.min.js"></script>
+
+	<script>
+
+		$(document).ready(function () {
+			$('#announcementList').DataTable({
+				pageLength: 10,
+				language: {
+					url: '//cdn.datatables.net/plug-ins/1.13.1/i18n/tr.json',
+				}
+			});
+		});
+
+	</script>
+}
+

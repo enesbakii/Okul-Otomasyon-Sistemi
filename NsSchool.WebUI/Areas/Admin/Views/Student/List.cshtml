@@ -1,0 +1,162 @@
+﻿@model List<StudentListViewModel>
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9 mt-3">
+		<div class="container mt-2">
+
+			<ul class="nav justify-content-end">
+
+				<li class="nav-item">
+					<a class="btn btn-success mb-2" asp-area="Admin" asp-controller="Student" asp-action="Add">Öğrenci Ekle</a>
+				</li>
+
+
+			</ul>
+
+			<table class="table align-middle mb-0 bg-white mt-3 mb-1" id="studentList">
+				<thead class="bg-light">
+					<tr>
+						<th>Ad Soyad</th>
+						<th>Kimlik No</th>
+						<th>Düzey</th>
+						<th>Sınıfı</th>
+						<th>Kullancı Adı</th>
+						<th>Şifre</th>
+						<th>Veli Ad Soyad</th>
+						<th>Veli Kimlik No</th>
+
+						<th>Aksiyon</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var student in Model)
+					{
+						<tr>
+							<td>
+								<div class="d-flex align-items-center">
+									@if (!string.IsNullOrWhiteSpace(student.ImagePath))
+									{
+										<img src="~/images/student/@student.ImagePath"
+									 alt=""
+									 style="width: 45px; height: 45px"
+									 class="rounded-circle" />
+									}
+									else
+									{
+										<img src="~/images/personel/person-circle.svg"
+									 alt=""
+									 style="width: 45px; height: 45px"
+									 class="rounded-circle" />
+									}
+
+
+									<div class="ms-3">
+										<p class="fw-bold mb-1">@student.StundetFullName</p>
+
+									</div>
+								</div>
+							</td>
+
+							<td>
+								<p class="fw-normal mb-1">@student.StudentIdentity</p>
+							</td>
+
+							<td>
+								<p class="fw-normal mb-1">@student.Grade</p>
+							</td>
+							@if (string.IsNullOrEmpty(student.ClassRoom))
+							{
+								<td>
+								<p class="fw-normal mb-1">-</p>
+							</td>
+							}
+							else
+							{
+								<td>
+									<p class="fw-normal mb-1">@student.ClassRoom</p>
+								</td>
+							}
+							
+
+							<td>
+								<p class="fw-normal mb-1">@student.StudentUserName</p>
+							</td>
+
+							<td>
+								<p class="badge badge-success rounded-pill d-inline">@student.StudentPassword</p>
+							</td>
+
+							<td>
+								<p class="fw-bold mb-1">@student.ParentFullName</p>
+							</td>
+
+							<td>
+								<p class="fw-normal mb-1">@student.ParentIdentity</p>
+							</td>
+							<td>
+								<a asp-area="Admin" asp-controller="Student" asp-action="StudentDetail" asp-route-id="@student.Id" class="btn btn-primary btn-sm btn-rounded">Daha Fazla...</a>
+								<a asp-area="Admin" asp-controller="Student" asp-action="Edit" asp-route-id="@student.Id" class="btn btn-warning btn-sm btn-rounded">Düzenle</a>
+								<a asp-area="Admin" asp-controller="Student" asp-action="Delete" data-id="@student.Id" class="btn btn-danger btn-sm btn-rounded delete">Sil</a>
+								
+							</td>
+
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+@section Scripts
+{
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.13.1/b-2.3.2/sl-1.5.0/datatables.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+            $('#studentList').DataTable({ 
+				pageLength: 10,
+				language: {
+					url: '//cdn.datatables.net/plug-ins/1.13.1/i18n/tr.json',
+				}
+			});
+        });
+
+
+		$('#studentList .delete').click(function (e) {
+			e.preventDefault(); 
+			var studentId = $(this).data('id'); 
+			Swal.fire({
+				title: 'Emin misin?',
+				text: "Dikkat! Ürün Silinecektir.",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Onaylıyorum.',
+				cancelButtonText: "İptal"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					$.ajax({
+						url: '/admin/student/delete/' + studentId,
+						method: "GET"
+					}).done(function () {
+						Swal.fire(
+							'Silindi!',
+							'Ürün Başarıyla Silindi.',
+							'success'
+						).then(() => { window.location.reload() });
+					}).fail(function () {
+						Swal.fire(
+							'Hata!',
+							'Bir hata oluştu, ürün silinemedi.'
+						)
+					});
+				}
+			})
+		})
+
+	</script>
+
+}

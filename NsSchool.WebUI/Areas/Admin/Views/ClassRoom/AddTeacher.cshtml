@@ -1,0 +1,37 @@
+﻿@model TeacherClassRoomViewModel
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9 mt-3">
+		<div class="col-5 offset-4">
+			<form method="post" asp-area="Admin" asp-controller="ClassRoom" asp-action="AddTeacher" enctype="multipart/form-data">
+				<h2 class="fw-bold text-center text-secondary mt-2 mb-2">Sınıf Öğretmen Ekleme Sayfası</h2>
+				<input type="hidden" asp-for="Id" />
+				<input type="hidden" asp-for="ClassRoomId" />
+				<div class="form-group mt-2">
+					<label class="form-label fw-bold" >Sınıf</label>
+					<input type="text" class="form-control" asp-for="ClassRoom" />
+					<span class="fw-bold text-danger" asp-validation-for="ClassRoom"></span>
+
+				</div>
+				<div class="form-group mt-2">
+					<label class="form-label fw-bold">Öğretmenler</label>
+				<select asp-for="FullName" name="ClassTeacher[]"
+						id="select2"
+						multiple="multiple"
+						class="form-control"
+						asp-items="ViewBag.TeacherList"></select>
+				</div>
+
+				<button type="submit" class="btn btn-primary mt-2 btn-block">Kaydet</button>
+				@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+				{
+					<div class="alert alert-danger mt-2">
+						@ViewBag.ErrorMessage
+					</div>
+				}
+			</form>
+		</div>
+
+	</div>
+</div>

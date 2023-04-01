@@ -1,0 +1,8 @@
+﻿@model List<CategoryListViewModel>
+
+@foreach (var category in Model)
+{
+    <li>
+        <a class="dropdown-item" asp-area="Parent" asp-controller="Shop" asp-action="List" asp-route-id="@category.Id">@category.Name</a>
+    </li>
+}

@@ -1,0 +1,33 @@
+﻿@model AnnouncementViewModel
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9">
+		<div class="container mt-2">
+			<h2 class="fw-bold text-center text-secondary mt-2 mb-2">DUYURULAR</h2>
+					<div class="card mt-2">
+				<div class="card-body">
+					<h5 class="card-title">@Model.Title</h5>
+					<p class="card-text">@Model.Discripton</p>
+					<a asp-area="Teacher" asp-controller="Announcement" asp-action="Download" asp-route-filePath="@Model.Path">@Model.Path</a>
+					<p class="card-text"><small class="text-muted">
+							@if (Model.ModifiedDate == null)
+							{
+
+								@Model.CreatedDate.ToShortDateString()
+								
+							}
+
+							else
+							{
+								@Model.ModifiedDate.Value.ToShortDateString()
+								
+							}
+					</small></p>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>

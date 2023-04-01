@@ -1,0 +1,13 @@
+﻿namespace NsSchool.WebUI.Areas.Admin.Models
+{
+    public class AnnouncementListViewModel
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Discripton { get; set; }
+        public string Path { get; set; }
+		public DateTime CreatedDate { get; set; }
+		public DateTime? ModifiedDate { get; set; }
+
+	}
+}

@@ -1,0 +1,60 @@
+﻿@model List<OrderListViewModel>
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9 mt-3">
+		<div class="container">
+			<table class="table table-hover mt-3" id="orderList">
+				<thead class="table-info mb-1">
+					<tr>
+						<th>Adı Soyadı</th>
+						<th>Ürün Adı</th>
+						<th>Kategori</th>
+						<th>Ürün Fiyatı</th>
+						<th>Adet</th>
+						<th>Toplam Fiyat</th>
+						
+					</tr>
+				</thead>
+
+				<tbody>
+					@foreach (var order in Model)
+					{
+						<tr>
+							<td>@order.FullName</td>
+							<td>@order.ProductName</td>
+							<td>@order.CategoryName</td>
+							<td>@order.UnitPrice</td>
+							<td>@order.Count</td>
+							<td>@order.TotalPrice</td>
+						</tr>
+					}	
+				</tbody>
+			</table>
+
+		</div>
+
+	</div>
+</div>
+
+@section Scripts
+	{
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.13.1/b-2.3.2/sl-1.5.0/datatables.min.js"></script>
+
+
+	<script>
+
+		/* Initialization of datatable */
+		$(document).ready(function () {
+			$('#orderList').DataTable({
+				pageLength: 10,
+				language: {
+					url: '//cdn.datatables.net/plug-ins/1.13.1/i18n/tr.json',
+				}
+			});
+		});
+
+
+
+	</script>
+}

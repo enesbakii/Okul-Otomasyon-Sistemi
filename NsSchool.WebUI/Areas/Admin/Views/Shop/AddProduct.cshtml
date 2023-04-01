@@ -1,0 +1,70 @@
+﻿@model ProductFormViewModel
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+	<div class="col-9 mt-3">
+		<div class="col-5 offset-4">
+			@{
+				string result = @ViewBag.ErrorCategory;
+			}
+			@if (!string.IsNullOrEmpty(result))
+			{
+				<h4 class="fw-bold text-center text-danger">@ViewBag.ErrorCategory </h4>
+				<a class="mt-3" asp-area="Admin" asp-controller="Shop" asp-action="AddCategory">Kategori Ekleme Sayfasına Git</a>
+			}
+			else
+			{
+						<form method="post" asp-area="Admin" asp-controller="Shop" asp-action="AddProduct" enctype="multipart/form-data">
+
+					<h2 class="fw-bold text-center text-secondary mt-2 mb-2">Ürün Ekleme Sayfası</h2>
+					<h4 class="fw-bold text-center text-danger">@ViewBag.ErrorMessage </h4>
+					<h4 class="fw-bold text-center text-danger">@ViewBag.ErrorCategory </h4>
+					<div class="form-group mt-2">
+						<label class="form-label fw-bold" asp-for="Name"></label>
+						<input type="text" class="form-control" asp-for="Name" />
+						<span class="fw-bold text-danger" asp-validation-for="Name"></span>
+
+					</div>
+				
+			
+					<div class="form-group mt-2">
+						<label class="form-label fw-bold" asp-for="CategoryId"></label>
+
+						<select asp-for="CategoryId" typeof="text" class="form-control" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))"></select>
+						<span class="fw-bold text-danger" asp-validation-for="CategoryId"></span>
+
+					</div>
+			
+					
+
+					<div class="form-group mt-2">
+						<label class="form-label fw-bold" asp-for="Discription"></label>
+						<input type="text" class="form-control" asp-for="Discription" />
+						<span class="fw-bold text-danger" asp-validation-for="Discription"></span>
+
+					</div>
+
+					<div class="form-group mt-2">
+						<label class="form-label fw-bold" asp-for="UnitPrice"></label>
+						<input type="text" class="form-control" asp-for="UnitPrice" />
+						<span class="fw-bold text-danger" asp-validation-for="UnitPrice"></span>
+
+					</div>
+
+					<div class="form-group mt-2">
+						<label class="form-label fw-bold" asp-for="ImagePath"></label>
+						<input type="file" class="form-control" asp-for="ImagePath" />
+						<span class="fw-bold text-danger" class="fw-bold text-danger" asp-validation-for="ImagePath"></span>
+
+					</div>
+
+					<button type="submit" class="btn btn-primary mt-2 btn-block">Kaydet</button>
+				</form>
+			}
+			
+
+
+		</div>
+	</div>
+
+</div>

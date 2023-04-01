@@ -1,0 +1,123 @@
+﻿@model ClassRoomStudentTeacherListViewModel
+<partial name="_PartialNavbar"></partial>
+<div class="row">
+	<partial class="col-2" name="_PartialSlidebar"></partial>
+
+	<div class="col-9 mt-3">
+		<div class="container mt-2">
+
+			<ul class="nav nav-pills mb-3 justify-content-end" id="pills-tab2" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active"
+							id="pills-home-tab2"
+							data-mdb-toggle="pill"
+							data-mdb-target="#pills-home2"
+							type="button"
+							role="tab"
+							aria-controls="pills-home"
+							aria-selected="true">
+						Öğretmen
+					</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link"
+							id="pills-profile-tab2"
+							data-mdb-toggle="pill"
+							data-mdb-target="#pills-profile2"
+							type="button"
+							role="tab"
+							aria-controls="pills-profile"
+							aria-selected="false">
+						Öğrenci
+					</button>
+				</li>
+			</ul>
+			<div class="tab-content" id="pills-tabContent2">
+				<div class="tab-pane fade show active"
+					 id="pills-home2"
+					 role="tabpanel"
+					 aria-labelledby="pills-home-tab2">
+
+
+					<ul class="nav justify-content-end">
+
+						<li class="nav-item">
+							<a class="btn btn-success mb-2" asp-area="Admin" asp-controller="ClassRoom" asp-action="AddTeacher" asp-route-id="@ViewBag.ClassRoomId">Öğretmen Ekle</a>
+						</li>
+					</ul>
+
+					<table class="table table-hover mt-3 list" id="teacherList">
+						<thead class="table-info mb-1">
+							<tr>
+								<th>Öğretmen</th>
+								<th>Sınıfı</th>
+								<th>Aksiyon</th>
+							</tr>
+						</thead>
+						
+
+
+						<tbody>
+
+							@foreach (var teacher in Model.TeacherClassRoomList)
+							{
+								@*<input type="hidden" asp-for="@teacher.TeacherId"/>*@
+								<tr>
+									<td>@teacher.FullName</td>
+									<td>@teacher.Branch</td>
+									<td>
+										<a asp-area="Admin" asp-controller="ClassRoom" asp-action="DeleteTeacher" asp-route-ClassRoomId="@teacher.ClassRoomId" asp-route-TeacherId="@teacher.TeacherId" class="btn btn-danger btn-sm btn-rounded delete">Sil</a>
+									</td>
+								</tr>
+							}
+
+
+						</tbody>
+					</table>
+
+
+
+				</div>
+				<div class="tab-pane fade"
+					 id="pills-profile2"
+					 role="tabpanel"
+					 aria-labelledby="pills-profile-tab2">
+
+					<ul class="nav justify-content-end">
+
+						<li class="nav-item">
+							<a class="btn btn-success mb-2" asp-area="Admin" asp-controller="ClassRoom" asp-action="AddStudent" asp-route-id="@ViewBag.ClassRoomId">Öğrenci Ekle</a>
+						</li>
+					</ul>
+					<table class="table table-hover mt-3 list" id="studentList">
+						<thead class="table-info mb-1">
+							<tr>
+								<th>Adı</th>
+								<th>Sınıfı</th>
+								<th>Aksiyon</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							@foreach (var student in Model.StudentClassRoomList)
+							{
+								@*<input type="hidden" asp-for="@teacher.TeacherId"/>*@
+								<tr>
+									<td>@student.FullName</td>
+									<td>@student.ClassRoomName</td>
+									<td>
+										<a asp-area="Admin" asp-controller="ClassRoom" asp-action="DeleteStudent" asp-route-ClassRoomId="@student.ClassRoomId" asp-route-StudentId="@student.StudentId" class="btn btn-danger btn-sm btn-rounded delete">Sil</a>
+									</td>
+								</tr>
+							}
+
+
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
